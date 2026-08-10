@@ -1,23 +1,22 @@
 # Lois Profesional
 
-Página estática lista para publicar en Vercel y usar como enlace de Instagram.
+Landing page estática de **Lois Cabral**, creada para compartir desde Instagram. Centraliza información de sus asesorías y permite a las personas interesadas contactarla directamente por WhatsApp.
 
-## Publicar en Vercel
+## Servicios destacados
 
-1. Sube esta carpeta a un repositorio nuevo de GitHub.
-2. En Vercel, elige **Add New → Project** e importa ese repositorio.
-3. No selecciones ningún framework: es una página estática.
-4. Pulsa **Deploy** y copia la URL pública a la biografía de Instagram.
+- **Asesoría Estratégica 1:1:** orientación personalizada para organizar metas, perfil y opciones de estudio en Estados Unidos.
+- **Inmigración 101:** información general sobre procesos migratorios, documentos y próximos pasos, con posibilidad de conexión a un representante autorizado para evaluación legal.
 
-## Activar Stripe
+## Características
 
-En `index.html`, busca `stripePaymentLinks` y pega los dos enlaces públicos que Stripe genere:
+- Diseño adaptable a móviles.
+- Enlace al perfil de Instagram `@loiscabralr`.
+- Botones de contacto directo por WhatsApp.
+- Preparada para habilitar pagos con tarjeta mediante Stripe.
 
-```js
-const stripePaymentLinks = {
-  strategic: 'https://buy.stripe.com/...',
-  immigration101: 'https://buy.stripe.com/...'
-};
-```
+> Esta web ofrece información general y no constituye asesoría legal ni representación. Para servicios legales, consulta a un profesional autorizado.
 
-Guarda los cambios y haz `git push`; Vercel publicará la actualización automáticamente. Nunca incluyas claves secretas de Stripe.
+## Publicación
+
+Puedes publicarla como una página estática en Vercel conectando este repositorio de GitHub. No requiere framework ni proceso de compilación.
+
