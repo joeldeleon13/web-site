@@ -287,53 +287,6 @@ body{
     <a class="quick-link" href="fidem.html">Fidem Consulting</a>
   </nav>
 
-  <!-- ==================== BLOQUE 2: ASESORIAS Y SERVICIOS ==================== -->
-  <div class="block" id="block-services">
-    <button class="block-header" onclick="toggleBlock('block-services')">
-      <div class="block-header-left">
-        <div class="block-icon icon-services">&#9878;&#65039;</div>
-        <div class="block-titles">
-          <p class="block-title">Asesorias y <span class="italic">Servicios</span></p>
-          <p class="block-subtitle">Acompañamiento personalizado</p>
-        </div>
-      </div>
-      <svg class="chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-
-    <div class="block-content">
-      <div class="block-content-inner">
-
-        <div class="service-card">
-          <p class="service-name">Asesoria <span class="italic">Estrategica 1:1</span></p>
-          <div class="service-desc">
-            <p>Una conversación personalizada para ordenar tus metas, tu perfil y tus opciones para estudiar en Estados Unidos.</p>
-            <p>Saldrás con claridad sobre los próximos pasos que mejor se adapten a tu situación.</p>
-          </div>
-          <a href="https://wa.me/16172796432" target="_blank" rel="noopener" class="service-cta">Agendar por WhatsApp</a>
-          <button type="button" class="service-cta payment-cta disabled" data-stripe-service="strategic" disabled>Pago seguro con tarjeta</button>
-          <p class="payment-note">El pago en línea estará disponible próximamente a través de Stripe.</p>
-        </div>
-
-        <div class="divider-soft"></div>
-
-        <div class="service-card">
-          <p class="service-name">Inmigracion <span class="italic">101</span></p>
-          <div class="service-desc">
-            <p>&iquest;Vas a iniciar o ya estas en un proceso migratorio y necesitas asistencia con la preparacion de tus documentos o entender como funciona el sistema migratorio?</p>
-            <p><strong>En esta sesion de 2 etapas:</strong></p>
-            <p><strong>1.</strong> Revisamos tu objetivo y te explicamos de forma general como funcionan los diferentes procesos migratorios y las principales categorias de visas. Si deseas someter una peticion familiar, realizar un ajuste de estatus, solicitar una visa de turismo u otro proceso migratorio, te orientamos sobre como funciona el proceso, los formularios y documentos necesarios, y los proximos pasos para avanzar.</p>
-            <p><strong>2.</strong> Si despues de esta orientacion identificamos que deseas avanzar con un proceso especifico, te conectamos con nuestro representante autorizado, quien podra brindarte la evaluacion legal, los consejos correspondientes y el manejo legal de tu caso.</p>
-          </div>
-          <a href="https://wa.me/16172796432" target="_blank" rel="noopener" class="service-cta">Agendar por WhatsApp</a>
-          <button type="button" class="service-cta payment-cta disabled" data-stripe-service="immigration101" disabled>Pago seguro con tarjeta</button>
-          <p class="payment-note">El pago en línea estará disponible próximamente a través de Stripe.</p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
   <!-- ==================== FOOTER ==================== -->
   <div class="footer">
     <p class="footer-note">¿Tienes una pregunta?<br>Escríbeme por WhatsApp o Instagram</p>
@@ -343,24 +296,6 @@ body{
 </div>
 
 <script>
-function toggleBlock(id) {
-  const block = document.getElementById(id);
-  const isOpen = block.classList.contains('open');
-  document.querySelectorAll('.block').forEach(b => b.classList.remove('open'));
-  if (!isOpen) block.classList.add('open');
-}
-document.getElementById('block-services').classList.add('open');
-
-/* Cuando haya precios, pega aquí los Payment Links de Stripe. Nunca claves secretas. */
-const stripePaymentLinks = { strategic: '', immigration101: '' };
-document.querySelectorAll('[data-stripe-service]').forEach((button) => {
-  const paymentLink = stripePaymentLinks[button.dataset.stripeService];
-  if (!paymentLink) return;
-  button.disabled = false;
-  button.classList.remove('disabled');
-  button.addEventListener('click', () => window.location.assign(paymentLink));
-});
 </script>
-
 </body>
 </html>
