@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda tu llamada · Lois Cabral | Fidem Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111111;
+    --ink-soft:#5F5F5F;
+    --paper:#FAFAF8;
+    --white:#FFFFFF;
+    --line:#E4E4E0;
+    --sky:#4C7EA8;
+    --sky-soft:#EEF3F7;
+    --max-w:460px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+    padding:56px 20px 40px;
+  }
+  .serif{font-family:'Cormorant Garamond',serif;font-weight:400;}
+  a{color:inherit;text-decoration:none;}
+  .page{width:100%;max-width:var(--max-w);}
+
+  /* BRAND */
+  .brand{
+    text-align:center;margin-bottom:44px;
+  }
+  .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:0.01em;}
+  .brand-tag{margin-top:4px;font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* CARD generic */
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:34px 28px;
+  }
+
+  .tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;
+    color:var(--ink-soft);margin-bottom:20px;
+  }
+  .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--sky);display:inline-block;}
+
+  .card h1, .card h2{
+    font-size:1.6rem;line-height:1.2;font-weight:500;margin-bottom:6px;
+  }
+  .card .role{
+    font-size:0.85rem;color:var(--ink-soft);margin-bottom:18px;
+  }
+  .card p.desc{
+    font-size:0.92rem;color:var(--ink-soft);margin-bottom:8px;
+  }
+  .card .duration{
+    font-size:0.78rem;color:var(--ink-soft);margin-bottom:26px;
+    padding-top:14px;border-top:1px solid var(--line);
+  }
+  .card .duration strong{color:var(--ink);font-weight:600;}
+
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;padding:16px 20px;
+    font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;
+    transition:opacity .2s ease, transform .15s ease;
+    border:none;cursor:pointer;
+  }
+  .btn:hover{opacity:0.82;}
+  .btn:active{transform:scale(0.99);}
+  .btn.solid{background:var(--ink);color:var(--white);}
+  .btn.outline{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+
+  .btn-note{
+    margin-top:12px;font-size:0.72rem;color:var(--ink-soft);text-align:center;
+  }
+
+  /* DIVIDER */
+  .divider{
+    display:flex;align-items:center;gap:14px;
+    margin:36px 0;
+    font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .divider::before, .divider::after{content:'';flex:1;height:1px;background:var(--line);}
+
+  /* COLLAPSIBLE */
+  details.card summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  details.card summary::-webkit-details-marker{display:none;}
+  .summary-text{display:flex;flex-direction:column;gap:4px;}
+  .summary-text h2{font-size:1.3rem;}
+  .summary-text .sub{font-size:0.82rem;color:var(--ink-soft);font-weight:400;font-family:'Inter',sans-serif;}
+  .chev{
+    width:28px;height:28px;flex-shrink:0;
+    border:1px solid var(--line);color:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;transition:transform .25s ease, border-color .25s ease;
+  }
+  details[open] .chev{transform:rotate(45deg);border-color:var(--ink);}
+  .details-body{margin-top:22px;padding-top:22px;border-top:1px solid var(--line);}
+  .details-body p{font-size:0.9rem;color:var(--ink-soft);margin-bottom:20px;}
+
+  /* FOOTER NOTE */
+  .foot-note{
+    margin-top:36px;text-align:center;
+    font-size:0.72rem;color:var(--ink-soft);line-height:1.7;
+  }
+  .foot-note strong{color:var(--ink);}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="brand">
+    <div class="brand-name">Lois Cabral</div>
+    <div class="brand-tag">Una ruta llena de oportunidades en EE.UU. para ti</div>
+  </div>
+
+  <!-- CARD 1 — ASESORÍA EDUCATIVA -->
+  <div class="card">
+    <span class="tag"><span class="dot"></span> Asesoría educativa</span>
+    <h1 class="serif">Llamada 1:1 con Lois Cabral</h1>
+    <p class="role">Asesora educativa · Fidem Consulting</p>
+    <p class="desc">Una sesión personalizada para revisar tus objetivos académicos en Estados Unidos. Juntas armamos tu ruta — opciones, procesos y siguientes pasos.</p>
+    <p class="duration"><strong>45 min</strong> · sesión 1:1 por videollamada</p>
+
+    <!-- 🔧 REEMPLAZAR con el link público de "Programar citas" de Google Calendar (formato calendar.app.google/...) -->
+    <a href="https://calendar.google.com/calendar/u/1/r" target="_blank" rel="noopener" class="btn solid">
+      Agendar en Google Calendar →
+    </a>
+    <p class="btn-note">Precio, calendario y pago se completan en el siguiente paso.</p>
+  </div>
+
+  <div class="divider">o si buscas algo distinto</div>
+
+  <!-- CARD 2 — CONSULTORÍA MIGRATORIA (desplegable) -->
+  <details class="card">
+    <summary>
+      <div class="summary-text">
+        <span class="tag" style="margin-bottom:8px;"><span class="dot"></span> Consultoría migratoria</span>
+        <h2 class="serif">Descubre tus opciones migratorias</h2>
+        <span class="sub">Visas, estatus y coordinación con abogados de inmigración</span>
+      </div>
+      <span class="chev">+</span>
+    </summary>
+    <div class="details-body">
+      <p>Conoce cómo Fidem Consulting te acompaña en tu proceso migratorio: desde una consulta inicial hasta la coordinación con abogados de inmigración y representantes acreditados por el DOJ.</p>
+      <!-- 🔧 REEMPLAZAR "#" con el dominio real de Fidem Consulting una vez publicado -->
+      <a href="fidem.html" class="btn outline">Ir a Fidem Consulting →</a>
+    </div>
+  </details>
+
+  <p class="foot-note">
+    <strong>Fidem Consulting LLC</strong> ofrece servicios de consultoría.<br>
+    No es un despacho de abogados ni asesoramiento legal.
+  </p>
+
+</div>
+
+</body>
+</html>

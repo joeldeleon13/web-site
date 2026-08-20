@@ -109,6 +109,34 @@ body{
   font-weight:500;
   margin-top:6px;
 }
+.quick-links{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:0 auto 18px;
+  max-width:420px;
+}
+.quick-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:10px 12px;
+  border:1px solid var(--sky-dark);
+  border-radius:10px;
+  background:var(--white);
+  color:var(--sky-dark);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+  line-height:1.3;
+  text-align:center;
+  text-transform:uppercase;
+  transition:background .2s ease,color .2s ease,transform .15s ease;
+}
+.quick-link:hover{background:var(--sky-dark);color:var(--white);}
+.quick-link:active{transform:scale(.98);}
+@media (max-width:360px){.quick-links{grid-template-columns:1fr;}}
 
 .block{
   margin-bottom:14px;border-radius:16px;overflow:hidden;
@@ -253,6 +281,11 @@ body{
     Orientación personalizada para tu camino en Estados Unidos
     <span class="profile-italic">Información clara &middot; Próximos pasos con propósito</span>
   </p>
+
+  <nav class="quick-links" aria-label="Enlaces principales">
+    <a class="quick-link" href="agenda.html">Agendar con Lois</a>
+    <a class="quick-link" href="fidem.html">Fidem Consulting</a>
+  </nav>
 
   <!-- ==================== BLOQUE 2: ASESORIAS Y SERVICIOS ==================== -->
   <div class="block" id="block-services">
