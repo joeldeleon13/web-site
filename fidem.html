@@ -433,24 +433,27 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="f5c5b2e6-9d82-4f93-a58e-dbcba4e5190f">
+          <input type="hidden" name="subject" value="Nueva solicitud desde Fidem Consulting">
+          <input type="hidden" name="from_name" value="Fidem Consulting Web">
           <div class="form-row">
             <label for="f-name" data-i18n="formName">Nombre y apellido</label>
-            <input type="text" id="f-name" name="name" required>
+            <input type="text" id="f-name" name="name" required maxlength="80" autocomplete="name">
           </div>
           <div class="form-two">
             <div class="form-row">
               <label for="f-email" data-i18n="formEmail">Correo</label>
-              <input type="email" id="f-email" name="email" required>
+              <input type="email" id="f-email" name="email" required maxlength="254" autocomplete="email">
             </div>
             <div class="form-row">
               <label for="f-phone" data-i18n="formPhone">Teléfono / WhatsApp</label>
-              <input type="tel" id="f-phone" name="phone">
+              <input type="tel" id="f-phone" name="phone" maxlength="20" inputmode="tel" autocomplete="tel" pattern="^\+?[0-9\s().-]{7,20}$" title="Escribe un teléfono válido, por ejemplo: +1 829 123 4567">
             </div>
           </div>
           <div class="form-row">
             <label for="f-service" data-i18n="formService">¿En qué te podemos ayudar?</label>
-            <select id="f-service" name="service">
+            <select id="f-service" name="service" required>
               <option data-i18n="opt1">Orientación educativa</option>
               <option data-i18n="opt2">Consultoría migratoria EE.UU.</option>
               <option data-i18n="opt3">Traducciones / Notarizaciones / Intérprete</option>
@@ -461,7 +464,7 @@
           </div>
           <div class="form-row">
             <label for="f-message" data-i18n="formMessage">Cuéntanos tu caso</label>
-            <textarea id="f-message" name="message"></textarea>
+            <textarea id="f-message" name="message" required minlength="10" maxlength="1000"></textarea>
           </div>
           <button type="submit" class="form-submit" data-i18n="formSubmit">Enviar solicitud →</button>
           <p class="form-note" data-i18n="formNote">Se abrirá tu app de correo con el mensaje listo para enviar.</p>
@@ -521,7 +524,43 @@
       ? { n:'Name', e:'Email', p:'Phone', s:'Service', m:'Message' }
       : { n:'Nombre', e:'Correo', p:'Teléfono', s:'Servicio', m:'Mensaje' };
     const body = `${bodyLabels.n}: ${name}\n${bodyLabels.e}: ${email}\n${bodyLabels.p}: ${phone}\n${bodyLabels.s}: ${service}\n\n${bodyLabels.m}:\n${message}`;
-    window.location.href = `mailto:fidemaip@gmail.com?subject=${encodeURIComponent(subjectPrefix + service)}&body=${encodeURIComponent(body)}`;
+    const subject = subjectPrefix + service;
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    const mailtoUrl = `mailto:joeldeleonreyes102@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=joeldeleonreyes102%40gmail.com&su=${encodedSubject}&body=${encodedBody}`;
+    const fallback = document.createElement('a');
+    fallback.href = gmailUrl;
+    fallback.target = '_blank';
+    fallback.rel = 'noopener';
+    fallback.textContent = isEN ? 'Open Gmail to send the request' : 'Si no se abrió el correo, pulsa aquí para enviarlo';
+    fallback.style.display = 'block';
+    fallback.style.marginTop = '8px';
+    fallback.style.textDecoration = 'underline';
+    fallback.style.cursor = 'pointer';
+    const note = document.querySelector('.form-note');
+    note.querySelector('.mail-fallback')?.remove();
+    fallback.className = 'mail-fallback';
+    note.appendChild(fallback);
+    const form = document.getElementById('contactForm');
+    const statusNote = form.querySelector('.form-note');
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    submit.textContent = 'Enviando...';
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    }).then((response) => {
+      if (!response.ok) throw new Error('No se pudo enviar');
+      form.reset();
+      statusNote.textContent = 'Solicitud enviada. Te responderemos pronto.';
+    }).catch(() => {
+      statusNote.textContent = 'No se pudo enviar. Intenta de nuevo.';
+    }).finally(() => {
+      submit.disabled = false;
+      submit.textContent = 'Enviar solicitud →';
+    });
   });
 
   /* ---- i18n dictionary ---- */
