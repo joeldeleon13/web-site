@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fidem Consulting LLC — Consultoría educativa, migratoria y legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --paper:#FAFAF8;
+    --ink:#111111;
+    --ink-soft:#5A5A5A;
+    --line:#E2E2DE;
+    --max-w:1120px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    font-size:16px;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    color:var(--ink);
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 40px;}
+  ::selection{background:var(--ink);color:var(--white);}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{outline:1px solid var(--ink);outline-offset:3px;}
+  .eyebrow{
+    font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:26px;height:1px;background:var(--ink);display:inline-block;}
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 40px;max-width:var(--max-w);margin:0 auto;
+    position:relative;
+  }
+  .brand{display:flex;align-items:center;gap:11px;}
+  .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;letter-spacing:0.02em;font-weight:500;}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .lang-toggle{display:flex;align-items:center;gap:6px;font-size:0.75rem;letter-spacing:0.06em;font-weight:600;}
+  .lang-toggle button{
+    background:none;border:none;cursor:pointer;color:var(--ink-soft);
+    font-family:'Inter',sans-serif;font-size:0.75rem;letter-spacing:0.06em;font-weight:600;
+    padding:4px 2px;transition:color .2s ease;
+  }
+  .lang-toggle button.active{color:var(--ink);text-decoration:underline;text-underline-offset:4px;}
+  .lang-toggle .sep{color:var(--line);}
+  .menu-btn{
+    background:none;border:1px solid var(--line);cursor:pointer;
+    width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .menu-btn:hover{border-color:var(--ink);}
+  .menu-btn span{display:block;width:16px;height:1px;background:var(--ink);position:relative;}
+  .menu-btn span::before,.menu-btn span::after{
+    content:'';position:absolute;left:0;width:16px;height:1px;background:var(--ink);transition:transform .2s ease;
+  }
+  .menu-btn span::before{top:-5px;}
+  .menu-btn span::after{top:5px;}
+  .menu-btn.open span{background:transparent;}
+  .menu-btn.open span::before{transform:translateY(5px) rotate(45deg);}
+  .menu-btn.open span::after{transform:translateY(-5px) rotate(-45deg);}
+
+  .dropdown{
+    position:absolute;top:calc(100% + 1px);right:0;
+    background:var(--white);border:1px solid var(--line);
+    min-width:220px;
+    display:flex;flex-direction:column;
+    opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
+    box-shadow:0 12px 28px rgba(0,0,0,0.08);
+  }
+  .dropdown.open{opacity:1;visibility:visible;transform:translateY(0);}
+  .dropdown a{
+    padding:16px 22px;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
+    border-bottom:1px solid var(--line);color:var(--ink);transition:background .2s ease, padding-left .2s ease;
+  }
+  .dropdown a:last-child{border-bottom:none;}
+  .dropdown a:hover{background:var(--paper);padding-left:28px;}
+
+  /* HERO */
+  .hero{padding:80px 40px 0;}
+  .hero-inner{max-width:var(--max-w);margin:0 auto;}
+  .hero .eyebrow{margin-bottom:26px;}
+  .hero h1{
+    font-size:clamp(2.4rem, 5.2vw, 3.6rem);
+    line-height:1.08;font-weight:400;max-width:680px;
+  }
+  .hero h1 em{font-style:italic;}
+  .hero-sub{margin-top:22px;max-width:560px;font-size:1rem;color:var(--ink-soft);}
+  .hero-cta-row{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink);color:var(--white);
+    padding:14px 30px;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;
+    display:inline-flex;align-items:center;gap:8px;transition:opacity .2s ease;border:1px solid var(--ink);
+  }
+  .btn-primary:hover{opacity:0.75;}
+  .btn-outline{
+    border:1px solid var(--ink);color:var(--ink);
+    padding:14px 30px;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;
+    display:inline-flex;align-items:center;transition:background .2s ease, color .2s ease;
+  }
+  .btn-outline:hover{background:var(--ink);color:var(--white);}
+  .hero-disclaimer{
+    margin-top:26px;font-size:0.72rem;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:0.06em;
+  }
+
+  /* STAT BAR */
+  .stat-bar{
+    margin-top:64px;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .stat-item{padding:26px 28px;border-left:1px solid var(--line);}
+  .stat-item:first-child{border-left:none;padding-left:0;}
+  .stat-item .stat-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;}
+  .stat-item .stat-label{margin-top:6px;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* SECTION generic */
+  section{padding:88px 0;}
+  section.bordered{border-top:1px solid var(--line);}
+  .section-head{max-width:680px;margin-bottom:44px;}
+  .section-head .eyebrow{margin-bottom:0;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:400;}
+  .section-head p{margin-top:16px;color:var(--ink-soft);font-size:0.95rem;}
+
+  /* SERVICES */
+  .service-group{margin-bottom:56px;}
+  .service-group:last-child{margin-bottom:0;}
+  .service-group-head{
+    display:flex;align-items:baseline;gap:16px;margin-bottom:22px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap;
+  }
+  .service-group-head h3{font-size:1.2rem;font-weight:500;font-family:'Inter',sans-serif;letter-spacing:0.01em;}
+  .service-group-note{font-size:0.78rem;color:var(--ink-soft);font-style:italic;}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line);border-left:1px solid var(--line);
+  }
+  .service-grid.cols-4{grid-template-columns:repeat(4,1fr);}
+  .service-card{
+    padding:32px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transition:background .2s ease;
+  }
+  .service-card:hover{background:var(--paper);}
+  .service-card .num{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-soft);font-size:1rem;display:block;margin-bottom:18px;}
+  .service-card h4{font-family:'Inter',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:4px;}
+  .service-card .subname{display:block;font-size:0.76rem;color:var(--ink-soft);font-style:italic;margin-bottom:10px;}
+  .service-card p{color:var(--ink-soft);font-size:0.87rem;}
+  .service-card .stages{list-style:none;margin-top:6px;display:flex;flex-direction:column;gap:8px;}
+  .service-card .stages li{font-size:0.85rem;color:var(--ink-soft);padding-left:18px;position:relative;}
+  .service-card .stages li::before{content:attr(data-n);position:absolute;left:0;top:0;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink);font-size:0.82rem;}
+  .service-card .stages strong{color:var(--ink);font-weight:600;}
+  .services-note{margin-top:32px;font-size:0.82rem;color:var(--ink-soft);font-style:italic;max-width:720px;}
+
+  /* ABOUT */
+  .about{background:var(--paper);}
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start;}
+  .about-grid h2{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:400;line-height:1.22;}
+  .about-body p{color:var(--ink-soft);margin-bottom:18px;font-size:0.96rem;}
+  .disclaimer{
+    margin-top:10px;padding:22px 26px;background:var(--white);border-left:2px solid var(--ink);
+    font-size:0.82rem;color:var(--ink-soft);line-height:1.65;
+  }
+  .disclaimer strong{color:var(--ink);font-weight:600;}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start;}
+  .contact-info .eyebrow{margin-bottom:14px;}
+  .contact-info h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:400;max-width:420px;}
+  .contact-info p{margin-top:16px;color:var(--ink-soft);font-size:0.95rem;max-width:420px;}
+  .contact-details{margin-top:40px;display:flex;flex-direction:column;gap:0;}
+  .contact-row{padding:18px 0;border-top:1px solid var(--line);}
+  .contact-row:last-child{border-bottom:1px solid var(--line);}
+  .contact-row .label{font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:4px;}
+  .contact-row a{font-family:'Cormorant Garamond',serif;font-size:1.15rem;}
+  .contact-row a:hover{color:var(--ink-soft);}
+
+  .contact-form{border:1px solid var(--line);padding:36px;background:var(--paper);}
+  .form-row{margin-bottom:20px;}
+  .form-row label{display:block;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  .form-row input, .form-row textarea, .form-row select{
+    width:100%;border:none;border-bottom:1px solid var(--line);background:transparent;
+    padding:10px 2px;font-family:'Inter',sans-serif;font-size:0.92rem;color:var(--ink);
+  }
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus{border-bottom-color:var(--ink);outline:none;}
+  .form-row textarea{resize:vertical;min-height:80px;}
+  .form-two{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .form-submit{
+    margin-top:8px;width:100%;background:var(--ink);color:var(--white);border:none;cursor:pointer;
+    padding:15px 28px;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;
+    transition:opacity .2s ease;font-family:'Inter',sans-serif;
+  }
+  .form-submit:hover{opacity:0.8;}
+  .form-note{margin-top:14px;font-size:0.76rem;color:var(--ink-soft);text-align:center;}
+
+  /* FOOTER */
+  footer{padding:30px 40px;border-top:1px solid var(--line);}
+  .footer-inner{
+    max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:wrap;gap:14px;font-size:0.75rem;color:var(--ink-soft);
+  }
+  .footer-inner a{color:var(--ink-soft);}
+  .footer-inner a:hover{color:var(--ink);}
+
+  @media (max-width:860px){
+    .stat-bar{grid-template-columns:repeat(2,1fr);}
+    .stat-item:nth-child(3){border-left:none;padding-left:0;}
+    .service-grid{grid-template-columns:1fr;}
+    .service-grid.cols-4{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;gap:32px;}
+    .contact-grid{grid-template-columns:1fr;gap:40px;}
+    .form-two{grid-template-columns:1fr;}
+    .hero{padding:64px 24px 0;}
+    section{padding:64px 0;}
+    .wrap{padding:0 24px;}
+    .nav{padding:18px 24px;}
+    footer{padding:26px 24px;}
+    .dropdown{min-width:180px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <span class="brand-name">Fidem Consulting</span>
+    </a>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button type="button" id="lang-en" data-lang="en">EN</button>
+        <span class="sep">|</span>
+        <button type="button" id="lang-es" class="active" data-lang="es">ES</button>
+      </div>
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+        <span></span>
+      </button>
+      <nav class="dropdown" id="dropdown">
+        <a href="#servicios" data-i18n="navServices">Servicios</a>
+        <a href="#nosotros" data-i18n="navAbout">Nosotros</a>
+        <a href="#contacto" data-i18n="navContact">Contacto</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow" data-i18n="heroEyebrow">Confianza y solución</div>
+      <h1 data-i18n="heroH1">Tu ruta en <em>Estados Unidos</em> con claridad.</h1>
+      <p class="hero-sub" data-i18n="heroSub">Descubre cómo cumplir tus objetivos migratorios, con claridad, orden y buena fe en cada paso — desde la orientación educativa hasta la coordinación con abogados y expertos de inmigración, como aliados legales.</p>
+      <div class="hero-cta-row">
+        <a href="#contacto" class="btn-primary" data-i18n="ctaPrimary">Agendar consulta →</a>
+        <a href="#servicios" class="btn-outline" data-i18n="ctaSecondary">Nuestros servicios</a>
+      </div>
+      <p class="hero-disclaimer" data-i18n="heroDisclaimer">Fidem Consulting ofrece servicios de consultoría. No somos un despacho de abogados. No es asesoramiento legal.</p>
+
+      <div class="stat-bar">
+        <div class="stat-item">
+          <div class="stat-num" data-i18n="stat1num">Educación</div>
+          <div class="stat-label" data-i18n="stat1label">Asesoría educativa</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-i18n="stat2num">EE.UU.</div>
+          <div class="stat-label" data-i18n="stat2label">Consultoría migratoria</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-i18n="stat3num">República Dominicana</div>
+          <div class="stat-label" data-i18n="stat3label">Abogados dominicanos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-i18n="stat4num">360°</div>
+          <div class="stat-label" data-i18n="stat4label">Traducción y notarías</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="bordered">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="servicesEyebrow">Qué hacemos</span>
+      </div>
+
+      <div class="service-group">
+        <div class="service-group-head">
+          <h3 data-i18n="group1Title">01 · Asesorías</h3>
+          <span class="service-group-note" data-i18n="group1Note">Te acompañamos y gestionamos la preparación de documentos y trámites migratorios.</span>
+        </div>
+        <div class="service-grid">
+          <div class="service-card">
+            <span class="num">a</span>
+            <h4 data-i18n="svcA_title">Asesoría 1:1</h4>
+            <p data-i18n="svcA_body">Sección personalizada de acompañamiento a personas interesadas en estudiar en Estados Unidos; revisamos tus objetivos académicos y creamos una ruta con tus opciones, procesos y siguientes pasos.</p>
+          </div>
+          <div class="service-card">
+            <span class="num">b</span>
+            <h4 data-i18n="svcB_title">Inmigración 101</h4>
+            <p data-i18n="svcB_intro" style="margin-bottom:10px;">Gestión en servicios migratorios, asistencia en la preparación de documentos.</p>
+            <ul class="stages">
+              <li data-n="1" data-i18n="svcB_stage1"><strong>Etapa 1:</strong> panorama general de visas y opciones aplicables.</li>
+              <li data-n="2" data-i18n="svcB_stage2"><strong>Etapa 2 (acompañamiento legal):</strong> el caso pasa a uno de nuestros aliados legales — abogado o representante acreditado — para creación de estrategia, preparación y revisión final.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-group">
+        <div class="service-group-head">
+          <h3 data-i18n="group2Title">02 · Otros servicios</h3>
+        </div>
+        <div class="service-grid cols-4">
+          <div class="service-card">
+            <span class="num">a</span>
+            <h4 data-i18n="svcC_title">Traducciones</h4>
+            <p data-i18n="svcC_body">Documentos oficiales y personales en Rep. Dom.<br>Documentos oficiales y personales en USA.</p>
+          </div>
+          <div class="service-card">
+            <span class="num">b</span>
+            <h4 data-i18n="svcD_title">Notarizaciones</h4>
+            <p data-i18n="svcD_body">Gestión notarial en Rep. Dom.<br>Gestión notarial en USA.</p>
+          </div>
+          <div class="service-card">
+            <span class="num">c</span>
+            <h4 data-i18n="svcE_title">Intérprete</h4>
+            <p data-i18n="svcE_body">Acompañamiento a entrevista de USCIS: asilo, residencia/ajuste de estatus u otro trámite legal o comunitario.</p>
+          </div>
+          <div class="service-card">
+            <span class="num">d</span>
+            <h4 data-i18n="svcF_title">Evaluaciones Psicológicas de Inmigración</h4>
+            <span class="subname" data-i18n="svcF_sub">(Immigration Psych Evaluations)</span>
+            <p data-i18n="svcF_body">Evaluación psicológica de psicólogos norteamericanos para sustentar tu caso migratorio.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-group">
+        <div class="service-group-head">
+          <h3 data-i18n="group3Title">03 · Abogados Dominicanos</h3>
+          <span class="service-group-note" data-i18n="group3Note">Representación legal de abogados licenciados para ejercer derecho en RD</span>
+        </div>
+        <div class="service-grid">
+          <div class="service-card">
+            <span class="num">a</span>
+            <h4 data-i18n="svcG_title">Derecho Inmobiliario</h4>
+            <p data-i18n="svcG_body">Asesoría y gestión de inmuebles y casos en materia inmobiliaria y de tierras.</p>
+          </div>
+          <div class="service-card">
+            <span class="num">b</span>
+            <h4 data-i18n="svcH_title">Derecho Civil</h4>
+            <p data-i18n="svcH_body">Acompañamiento en procesos y trámites de carácter civil: divorcio, sucesión familiar, cobro, daños y perjuicios, entre otros.</p>
+          </div>
+          <div class="service-card">
+            <span class="num">c</span>
+            <h4 data-i18n="svcI_title">Derecho Penal</h4>
+            <p data-i18n="svcI_body">Orientación y coordinación en procesos de materia penal.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="services-note" data-i18n="servicesNote">* Fidem Consulting coordina y refiere estos servicios; la evaluación, estrategia y representación de cada caso corresponde a los profesionales y abogados aliados correspondientes.</p>
+    </div>
+  </section>
+
+  <section class="about bordered" id="nosotros">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <span class="eyebrow" style="margin-bottom:18px;" data-i18n="aboutEyebrow">Quiénes somos</span>
+          <h2 data-i18n="aboutH2">Fidem Consulting LLC</h2>
+        </div>
+        <div class="about-body">
+          <p data-i18n="aboutBody">Nació para cerrar la brecha entre la ambición internacional y la realidad del mercado americano. Presta servicios de consultoría general, incluyendo asesoría educativa e integral a personas interesadas en estudiar, o en su desarrollo profesional o personal, en Estados Unidos. Coordinamos con una red seleccionada de abogados licenciados, representantes acreditados del DOJ y especialistas para asegurar el apoyo profesional correcto en cada etapa.</p>
+
+          <div class="disclaimer">
+            <strong data-i18n="aboutDisclaimerStrong">Aviso importante:</strong>
+            <span data-i18n="aboutDisclaimer"> Fidem Consulting LLC ofrece únicamente servicios de consultoría académica y migratoria. No somos un bufete de abogados ni prestamos servicios legales de forma directa: la evaluación de casos, la estrategia legal y la representación ante autoridades corresponden exclusivamente a abogados licenciados, representantes acreditados por el DOJ, o a nuestros abogados aliados en materia legal dominicana.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bordered" id="contacto">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="eyebrow" data-i18n="contactEyebrow">Contáctanos</span>
+          <h2 data-i18n="contactH2">Hablemos de tu próximo paso.</h2>
+          <p data-i18n="contactP">Agenda una consulta con nuestro equipo. Evaluaremos tus objetivos y te conectaremos con el plan adecuado y los profesionales correctos.</p>
+
+          <div class="contact-details">
+            <div class="contact-row">
+              <span class="label" data-i18n="labelEmail">Correo</span>
+              <a href="mailto:fidemaip@gmail.com">fidemaip@gmail.com</a>
+            </div>
+            <div class="contact-row">
+              <span class="label" data-i18n="labelPhone">Teléfono</span>
+              <a href="tel:+18562391254">(856) 239-1254</a>
+            </div>
+            <div class="contact-row">
+              <span class="label" data-i18n="labelIG">Instagram</span>
+              <a href="https://instagram.com/fidemusgroup" target="_blank" rel="noopener">@fidemusgroup</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="f5c5b2e6-9d82-4f93-a58e-dbcba4e5190f">
+          <input type="hidden" name="subject" value="Nueva solicitud desde Fidem Consulting">
+          <input type="hidden" name="from_name" value="Fidem Consulting Web">
+          <div class="form-row">
+            <label for="f-name" data-i18n="formName">Nombre y apellido</label>
+            <input type="text" id="f-name" name="name" required maxlength="80" autocomplete="name">
+          </div>
+          <div class="form-two">
+            <div class="form-row">
+              <label for="f-email" data-i18n="formEmail">Correo</label>
+              <input type="email" id="f-email" name="email" required maxlength="254" autocomplete="email">
+            </div>
+            <div class="form-row">
+              <label for="f-phone" data-i18n="formPhone">Teléfono / WhatsApp</label>
+              <input type="tel" id="f-phone" name="phone" maxlength="12" inputmode="numeric" autocomplete="tel" placeholder="829-323-2332">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="f-service" data-i18n="formService">¿En qué te podemos ayudar?</label>
+            <select id="f-service" name="service" required>
+              <option data-i18n="opt1">Orientación educativa</option>
+              <option data-i18n="opt2">Consultoría migratoria EE.UU.</option>
+              <option data-i18n="opt3">Traducciones / Notarizaciones / Intérprete</option>
+              <option data-i18n="opt4">Evaluación psicológica de inmigración</option>
+              <option data-i18n="opt5">Representación legal dominicana</option>
+              <option data-i18n="opt6">Otro</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="f-message" data-i18n="formMessage">Cuéntanos tu caso</label>
+            <textarea id="f-message" name="message" maxlength="1000"></textarea>
+          </div>
+          <button type="submit" class="form-submit" data-i18n="formSubmit">Enviar solicitud →</button>
+          <p class="form-note" data-i18n="formNote">Se abrirá tu app de correo con el mensaje listo para enviar.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span>© <span id="year"></span> Fidem Consulting LLC. <span data-i18n="footerRights">Todos los derechos reservados.</span></span>
+    </div>
+    <a href="https://instagram.com/fidemusgroup" target="_blank" rel="noopener">@fidemusgroup</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---- Dropdown menu ---- */
+  const menuBtn = document.getElementById('menuBtn');
+  const dropdown = document.getElementById('dropdown');
+  menuBtn.addEventListener('click', function(){
+    const isOpen = dropdown.classList.toggle('open');
+    menuBtn.classList.toggle('open', isOpen);
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  dropdown.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      dropdown.classList.remove('open');
+      menuBtn.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('click', function(e){
+    if(!dropdown.contains(e.target) && !menuBtn.contains(e.target)){
+      dropdown.classList.remove('open');
+      menuBtn.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ---- Phone formatting ---- */
+  const phoneInput = document.getElementById('f-phone');
+  phoneInput.addEventListener('input', function(){
+    let digits = this.value.replace(/\D/g, '');
+    if (digits.length === 11 && digits.startsWith('1')) digits = digits.slice(1);
+    digits = digits.slice(0, 10);
+    if (digits.length > 6) {
+      this.value = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+    } else if (digits.length > 3) {
+      this.value = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    } else {
+      this.value = digits;
+    }
+  });
+
+  /* ---- Contact form ---- */
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('f-name').value;
+    const email = document.getElementById('f-email').value;
+    const phone = document.getElementById('f-phone').value;
+    const service = document.getElementById('f-service').value;
+    const message = document.getElementById('f-message').value;
+    const isEN = document.documentElement.lang === 'en';
+    const subjectPrefix = isEN ? 'Website inquiry — ' : 'Consulta desde el sitio web — ';
+    const bodyLabels = isEN
+      ? { n:'Name', e:'Email', p:'Phone', s:'Service', m:'Message' }
+      : { n:'Nombre', e:'Correo', p:'Teléfono', s:'Servicio', m:'Mensaje' };
+    const body = `${bodyLabels.n}: ${name}\n${bodyLabels.e}: ${email}\n${bodyLabels.p}: ${phone}\n${bodyLabels.s}: ${service}\n\n${bodyLabels.m}:\n${message}`;
+    const subject = subjectPrefix + service;
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    const mailtoUrl = `mailto:joeldeleonreyes102@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=joeldeleonreyes102%40gmail.com&su=${encodedSubject}&body=${encodedBody}`;
+    const fallback = document.createElement('a');
+    fallback.href = gmailUrl;
+    fallback.target = '_blank';
+    fallback.rel = 'noopener';
+    fallback.textContent = isEN ? 'Open Gmail to send the request' : 'Si no se abrió el correo, pulsa aquí para enviarlo';
+    fallback.style.display = 'block';
+    fallback.style.marginTop = '8px';
+    fallback.style.textDecoration = 'underline';
+    fallback.style.cursor = 'pointer';
+    const note = document.querySelector('.form-note');
+    note.querySelector('.mail-fallback')?.remove();
+    fallback.className = 'mail-fallback';
+    note.appendChild(fallback);
+    const form = document.getElementById('contactForm');
+    const statusNote = form.querySelector('.form-note');
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    submit.textContent = 'Enviando...';
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    }).then((response) => {
+      if (!response.ok) throw new Error('No se pudo enviar');
+      form.reset();
+      statusNote.textContent = 'Solicitud enviada. Te responderemos pronto.';
+    }).catch(() => {
+      statusNote.textContent = 'No se pudo enviar. Intenta de nuevo.';
+    }).finally(() => {
+      submit.disabled = false;
+      submit.textContent = 'Enviar solicitud →';
+    });
+  });
+
+  /* ---- i18n dictionary ---- */
+  const i18n = {
+    es: {
+      navServices: "Servicios",
+      navAbout: "Nosotros",
+      navContact: "Contacto",
+
+      heroEyebrow: "Confianza y solución",
+      heroH1: 'Tu ruta en <em>Estados Unidos</em> con claridad.',
+      heroSub: "Descubre cómo cumplir tus objetivos migratorios, con claridad, orden y buena fe en cada paso — desde la orientación educativa hasta la coordinación con abogados y expertos de inmigración, como aliados legales.",
+      ctaPrimary: "Agendar consulta →",
+      ctaSecondary: "Nuestros servicios",
+      heroDisclaimer: "Fidem Consulting ofrece servicios de consultoría. No somos un despacho de abogados. No es asesoramiento legal.",
+
+      stat1num: "Educación", stat1label: "Asesoría educativa",
+      stat2num: "EE.UU.", stat2label: "Consultoría migratoria",
+      stat3num: "República Dominicana", stat3label: "Abogados dominicanos",
+      stat4num: "360°", stat4label: "Traducción y notarías",
+
+      servicesEyebrow: "Qué hacemos",
+
+      group1Title: "01 · Asesorías",
+      group1Note: "Te acompañamos y gestionamos la preparación de documentos y trámites migratorios.",
+      svcA_title: "Asesoría 1:1",
+      svcA_body: "Sección personalizada de acompañamiento a personas interesadas en estudiar en Estados Unidos; revisamos tus objetivos académicos y creamos una ruta con tus opciones, procesos y siguientes pasos.",
+      svcB_title: "Inmigración 101",
+      svcB_intro: "Gestión en servicios migratorios, asistencia en la preparación de documentos.",
+      svcB_stage1: '<strong>Etapa 1:</strong> panorama general de visas y opciones aplicables.',
+      svcB_stage2: '<strong>Etapa 2 (acompañamiento legal):</strong> el caso pasa a uno de nuestros aliados legales — abogado o representante acreditado — para creación de estrategia, preparación y revisión final.',
+
+      group2Title: "02 · Otros servicios",
+      svcC_title: "Traducciones",
+      svcC_body: "Documentos oficiales y personales en Rep. Dom.<br>Documentos oficiales y personales en USA.",
+      svcD_title: "Notarizaciones",
+      svcD_body: "Gestión notarial en Rep. Dom.<br>Gestión notarial en USA.",
+      svcE_title: "Intérprete",
+      svcE_body: "Acompañamiento a entrevista de USCIS: asilo, residencia/ajuste de estatus u otro trámite legal o comunitario.",
+      svcF_title: "Evaluaciones Psicológicas de Inmigración",
+      svcF_sub: "(Immigration Psych Evaluations)",
+      svcF_body: "Evaluación psicológica de psicólogos norteamericanos para sustentar tu caso migratorio.",
+
+      group3Title: "03 · Abogados Dominicanos",
+      group3Note: "Representación legal de abogados licenciados para ejercer derecho en RD",
+      svcG_title: "Derecho Inmobiliario",
+      svcG_body: "Asesoría y gestión de inmuebles y casos en materia inmobiliaria y de tierras.",
+      svcH_title: "Derecho Civil",
+      svcH_body: "Acompañamiento en procesos y trámites de carácter civil: divorcio, sucesión familiar, cobro, daños y perjuicios, entre otros.",
+      svcI_title: "Derecho Penal",
+      svcI_body: "Orientación y coordinación en procesos de materia penal.",
+
+      servicesNote: "* Fidem Consulting coordina y refiere estos servicios; la evaluación, estrategia y representación de cada caso corresponde a los profesionales y abogados aliados correspondientes.",
+
+      aboutEyebrow: "Quiénes somos",
+      aboutH2: "Fidem Consulting LLC",
+      aboutBody: "Nació para cerrar la brecha entre la ambición internacional y la realidad del mercado americano. Presta servicios de consultoría general, incluyendo asesoría educativa e integral a personas interesadas en estudiar, o en su desarrollo profesional o personal, en Estados Unidos. Coordinamos con una red seleccionada de abogados licenciados, representantes acreditados del DOJ y especialistas para asegurar el apoyo profesional correcto en cada etapa.",
+      aboutDisclaimerStrong: "Aviso importante:",
+      aboutDisclaimer: " Fidem Consulting LLC ofrece únicamente servicios de consultoría académica y migratoria. No somos un bufete de abogados ni prestamos servicios legales de forma directa: la evaluación de casos, la estrategia legal y la representación ante autoridades corresponden exclusivamente a abogados licenciados, representantes acreditados por el DOJ, o a nuestros abogados aliados en materia legal dominicana.",
+
+      contactEyebrow: "Contáctanos",
+      contactH2: "Hablemos de tu próximo paso.",
+      contactP: "Agenda una consulta con nuestro equipo. Evaluaremos tus objetivos y te conectaremos con el plan adecuado y los profesionales correctos.",
+      labelEmail: "Correo", labelPhone: "Teléfono", labelIG: "Instagram",
+
+      formName: "Nombre y apellido",
+      formEmail: "Correo",
+      formPhone: "Teléfono / WhatsApp",
+      formService: "¿En qué te podemos ayudar?",
+      opt1: "Orientación educativa",
+      opt2: "Consultoría migratoria EE.UU.",
+      opt3: "Traducciones / Notarizaciones / Intérprete",
+      opt4: "Evaluación psicológica de inmigración",
+      opt5: "Representación legal dominicana",
+      opt6: "Otro",
+      formMessage: "Cuéntanos tu caso",
+      formSubmit: "Enviar solicitud →",
+      formNote: "Se abrirá tu app de correo con el mensaje listo para enviar.",
+
+      footerRights: "Todos los derechos reservados."
+    },
+    en: {
+      navServices: "Services",
+      navAbout: "About",
+      navContact: "Contact",
+
+      heroEyebrow: "Trust and solutions",
+      heroH1: 'Your path in the <em>United States</em>, with clarity.',
+      heroSub: "Discover how to achieve your immigration goals — with clarity, order, and good faith at every step, from educational guidance to coordination with immigration attorneys and experts as legal partners.",
+      ctaPrimary: "Schedule a consultation →",
+      ctaSecondary: "Our services",
+      heroDisclaimer: "Fidem Consulting provides consulting services. We are not a law firm. This is not legal advice.",
+
+      stat1num: "Education", stat1label: "Educational guidance",
+      stat2num: "U.S.", stat2label: "Immigration consulting",
+      stat3num: "Dominican Republic", stat3label: "Dominican attorneys",
+      stat4num: "360°", stat4label: "Translation & notary",
+
+      servicesEyebrow: "What we do",
+
+      group1Title: "01 · Advisory Services",
+      group1Note: "We accompany you and manage document preparation and immigration procedures.",
+      svcA_title: "1:1 Advisory",
+      svcA_body: "A personalized support session for those interested in studying in the United States; we review your academic goals and build a path with your options, processes, and next steps.",
+      svcB_title: "Immigration 101",
+      svcB_intro: "Immigration services management and document preparation assistance.",
+      svcB_stage1: '<strong>Stage 1:</strong> general overview of visas and applicable options.',
+      svcB_stage2: '<strong>Stage 2 (legal support):</strong> your case moves to one of our legal partners — an attorney or accredited representative — for strategy, preparation, and final review.',
+
+      group2Title: "02 · Other Services",
+      svcC_title: "Translations",
+      svcC_body: "Official and personal documents in the Dominican Republic.<br>Official and personal documents in the U.S.",
+      svcD_title: "Notarizations",
+      svcD_body: "Notarial services in the Dominican Republic.<br>Notarial services in the U.S.",
+      svcE_title: "Interpreter",
+      svcE_body: "Support at USCIS interviews: asylum, residency/status adjustment, or other legal or community proceedings.",
+      svcF_title: "Immigration Psychological Evaluations",
+      svcF_sub: "(Immigration Psych Evaluations)",
+      svcF_body: "Psychological evaluation by U.S. psychologists to support your immigration case.",
+
+      group3Title: "03 · Dominican Attorneys",
+      group3Note: "Legal representation by attorneys licensed to practice law in the Dominican Republic",
+      svcG_title: "Real Estate Law",
+      svcG_body: "Advisory and case management in real estate and land matters.",
+      svcH_title: "Civil Law",
+      svcH_body: "Support in civil proceedings: divorce, family succession, debt collection, damages, among others.",
+      svcI_title: "Criminal Law",
+      svcI_body: "Guidance and coordination in criminal proceedings.",
+
+      servicesNote: "* Fidem Consulting coordinates and refers these services; the evaluation, strategy, and representation of each case is the responsibility of the corresponding professionals and partner attorneys.",
+
+      aboutEyebrow: "Who we are",
+      aboutH2: "Fidem Consulting LLC",
+      aboutBody: "Founded to close the gap between international ambition and the reality of the American market. We provide general consulting services, including educational and comprehensive advisory to individuals interested in studying, or advancing their professional or personal development, in the United States. We coordinate with a selected network of licensed attorneys, DOJ-accredited representatives, and specialists to ensure the right professional support at every stage.",
+      aboutDisclaimerStrong: "Important notice:",
+      aboutDisclaimer: " Fidem Consulting LLC offers only academic and immigration consulting services. We are not a law firm and do not provide legal services directly: case evaluation, legal strategy, and representation before authorities are handled exclusively by licensed attorneys, DOJ-accredited representatives, or our partner attorneys in Dominican law.",
+
+      contactEyebrow: "Get in touch",
+      contactH2: "Let's talk about your next step.",
+      contactP: "Schedule a consultation with our team. We'll assess your goals and connect you with the right plan and the right professionals.",
+      labelEmail: "Email", labelPhone: "Phone", labelIG: "Instagram",
+
+      formName: "Full name",
+      formEmail: "Email",
+      formPhone: "Phone / WhatsApp",
+      formService: "How can we help you?",
+      opt1: "Educational guidance",
+      opt2: "U.S. immigration consulting",
+      opt3: "Translations / Notarizations / Interpreter",
+      opt4: "Immigration psychological evaluation",
+      opt5: "Dominican legal representation",
+      opt6: "Other",
+      formMessage: "Tell us about your case",
+      formSubmit: "Send request →",
+      formNote: "Your email app will open with the message ready to send.",
+
+      footerRights: "All rights reserved."
+    }
+  };
+
+  function applyLang(lang){
+    const dict = i18n[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const key = el.getAttribute('data-i18n');
+      if(!dict[key]) return;
+      if(el.tagName === 'OPTION'){
+        el.textContent = dict[key];
+      } else {
+        el.innerHTML = dict[key];
+      }
+    });
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    document.getElementById('lang-es').classList.toggle('active', lang === 'es');
+  }
+
+  document.getElementById('lang-en').addEventListener('click', function(){ applyLang('en'); });
+  document.getElementById('lang-es').addEventListener('click', function(){ applyLang('es'); });
+
+  applyLang('es');
+</script>
+
+</body>
+</html>
