@@ -448,7 +448,7 @@
             </div>
             <div class="form-row">
               <label for="f-phone" data-i18n="formPhone">Teléfono / WhatsApp</label>
-              <input type="tel" id="f-phone" name="phone" maxlength="20" inputmode="tel" autocomplete="tel" pattern="^\+?[0-9\s().-]{7,20}$" title="Escribe un teléfono válido, por ejemplo: +1 829 123 4567">
+              <input type="tel" id="f-phone" name="phone" maxlength="12" inputmode="numeric" autocomplete="tel" placeholder="829-323-2332">
             </div>
           </div>
           <div class="form-row">
@@ -464,7 +464,7 @@
           </div>
           <div class="form-row">
             <label for="f-message" data-i18n="formMessage">Cuéntanos tu caso</label>
-            <textarea id="f-message" name="message" required minlength="10" maxlength="1000"></textarea>
+            <textarea id="f-message" name="message" maxlength="1000"></textarea>
           </div>
           <button type="submit" class="form-submit" data-i18n="formSubmit">Enviar solicitud →</button>
           <p class="form-note" data-i18n="formNote">Se abrirá tu app de correo con el mensaje listo para enviar.</p>
@@ -507,6 +507,21 @@
       dropdown.classList.remove('open');
       menuBtn.classList.remove('open');
       menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ---- Phone formatting ---- */
+  const phoneInput = document.getElementById('f-phone');
+  phoneInput.addEventListener('input', function(){
+    let digits = this.value.replace(/\D/g, '');
+    if (digits.length === 11 && digits.startsWith('1')) digits = digits.slice(1);
+    digits = digits.slice(0, 10);
+    if (digits.length > 6) {
+      this.value = `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+    } else if (digits.length > 3) {
+      this.value = `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    } else {
+      this.value = digits;
     }
   });
 
